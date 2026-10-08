@@ -1,13 +1,13 @@
 from phishing.analisador import analisar
 
-url = input("Cole o link para verificação veridica do site : ")
+url = input("Cole o link para analisar: ")
 resposta = input("Consultar a internet (WHOIS, certificado, redirecionamentos)? [s/n]: ")
 usar_rede = resposta.strip().lower() == "s"
 
 resultado = analisar(url, consultar_rede=usar_rede)
 
 print()
-print(f"Pontuação em escala de risco: {resultado['pontuacao']}/100")
+print(f"Risco {resultado['nivel'].upper()}: {resultado['pontuacao']}/100")
 
 if resultado["sinais"]:
     print("Sinais encontrados:")
