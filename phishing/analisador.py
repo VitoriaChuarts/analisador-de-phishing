@@ -8,6 +8,14 @@ from phishing.redirecionamentos import (
 )
 
 
+def classificar(pontuacao: int) -> str:
+    if pontuacao >= 50:
+        return "alto"
+    if pontuacao >= 20:
+        return "médio"
+    return "baixo"
+
+
 def analisar(url: str, consultar_rede: bool = True) -> dict:
     info = analisar_url(url)
     sinais = detectar_sinais(info)
@@ -31,4 +39,9 @@ def analisar(url: str, consultar_rede: bool = True) -> dict:
         pontuacao += pontos
     pontuacao = min(pontuacao, 100)
 
-    return {"url": url, "sinais": sinais, "pontuacao": pontuacao}
+    return {
+        "url": url,
+        "sinais": sinais,
+        "pontuacao": pontuacao,
+        "nivel": classificar(pontuacao),
+    }
