@@ -10,3 +10,7 @@ def test_dominio_real_escondido_em_subdominio():
 def test_sufixo_composto():
     r = analisar_url("https://www.banco.com.br")
     assert r["dominio_registravel"] == "banco.com.br"
+    
+def test_host_ignora_usuario_e_porta():
+    r = analisar_url("https://paypal.com@evil.com:8080/x")
+    assert r["host"] == "evil.com"

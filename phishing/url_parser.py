@@ -19,6 +19,7 @@ def analisar_url(url: str) -> dict:
         "url_original": url,
         "esquema": partes.scheme,
         "dominio_completo": partes.netloc,
+        "host": partes.hostname,
         "subdominio": extraido.subdomain,
         "dominio": extraido.domain,
         "sufixo": extraido.suffix,
