@@ -1,0 +1,8 @@
+From: "PayPal Suporte" <suporte@seguro-acesso.xyz>
+Reply-To: ajuda@outro-site.com
+Subject: Sua conta foi bloqueada
+Authentication-Results: mx.exemplo.com; spf=fail smtp.mailfrom=seguro-acesso.xyz
+Content-Type: text/plain; charset="utf-8"
+
+Detectamos atividade suspeita. Clique para verificar: http://paypa1.com/login
+Duvidas? Visite https://www.google.com.
