@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analisador de Phishing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Analisador de Phishing</h1>
+    <p class="sub">Escreva a URL para análise:</p>
+
+    <form id="form">
+      <input id="url" type="text" placeholder="https://exemplo.com" required>
+      <label>
+        <input id="rede" type="checkbox" checked>
+        <span>Consultar informações da rede</span>
+      </label>
+      <button id="botao" type="submit">Analisar</button>
+    </form>
+
+    <p id="mensagem" role="status"></p>
+
+    <section id="resultado" hidden>
+      <div class="cabecalho">
+        <span>Nível de Phishing:</span>
+        <span id="nivel" class="badge"></span>
+        <span id="pontuacao"></span>
+      </div>
+      <p id="url-analisada"></p>
+      <ul id="sinais"></ul>
+    </section>
+
+    <section>
+      <h2>Histórico</h2>
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>URL</th><th>Pontos</th><th>Nível</th></tr>
+          </thead>
+          <tbody id="historico"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
