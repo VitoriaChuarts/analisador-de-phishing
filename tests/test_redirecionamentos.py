@@ -1,7 +1,30 @@
 from phishing.url_parser import analisar_url
 from phishing.redirecionamentos import sinais_do_redirecionamento
+from phishing import redirecionamentos
 
 
+class RespostaFalsa:
+    def __init__(self, status, location=None):
+        self.status_code = status
+        self.headers = {"Location": location} if location else {}
+
+    def close(self):
+        pass
+
+
+def test_nao_segue_redirecionamento_para_rede_interna(monkeypatch):
+    chamadas = []
+
+    def get_falso(url, **kwargs):
+        chamadas.append(url)
+        return RespostaFalsa(302, "http://127.0.0.1/admin")
+
+    monkeypatch.setattr(redirecionamentos.requests, "get", get_falso)
+
+    caminho = redirecionamentos.seguir_redirecionamentos("http://8.8.8.8/")
+
+    assert chamadas == ["http://8.8.8.8/"]
+    assert caminho[-1] == "http://127.0.0.1/admin"
 def total(sinais):
     soma = 0
     for descricao, pontos in sinais:

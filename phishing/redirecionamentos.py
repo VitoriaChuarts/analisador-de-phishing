@@ -4,6 +4,7 @@ import requests
 
 from phishing.typosquatting import marca_parecida
 from phishing.url_parser import analisar_url
+from phishing.validar_rede import validar_url
 
 MAX_SALTOS = 5
 CODIGOS_REDIRECIONAMENTO = (301, 302, 303, 307, 308)
@@ -14,6 +15,11 @@ def seguir_redirecionamentos(url: str, timeout: float = 5) -> list:
     atual = url
 
     for _ in range(MAX_SALTOS):
+        try:
+            validar_url(atual)
+        except ValueError:
+            break
+
         try:
             resposta = requests.get(
                 atual, allow_redirects=False, timeout=timeout, stream=True
