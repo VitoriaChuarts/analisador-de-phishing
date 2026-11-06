@@ -11,6 +11,10 @@ from pathlib import Path
 
 from fastapi.staticfiles import StaticFiles
 
+from pydantic import BaseModel, Field
+
+from phishing.validar_rede import validar_url
+
 criar_tabelas()
 
 app = FastAPI(
@@ -18,10 +22,9 @@ app = FastAPI(
     description="API que analisa URLs e retorna uma pontuação de risco",
     version="1.0.0",
 )
-
-
+  
 class PedidoUrl(BaseModel):
-    url: str
+    url: str = Field(max_length=2048)
     consultar_rede: bool = True
 
 
