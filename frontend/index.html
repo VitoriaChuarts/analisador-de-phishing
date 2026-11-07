@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Analisador de Phishing</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,23 +16,40 @@
         <small>de Phishing</small>
       </div>
       <nav>
-        <a href="#analise" class="ativo">Analisar URL</a>
+        <a href="#aba-url" data-aba="url" class="ativo">Analisar URL</a>
+        <a href="#aba-email" data-aba="email">Analisar e-mail</a>
         <a href="#historico-secao">Histórico</a>
       </nav>
     </aside>
 
     <main>
-      <h1 id="analise">Painel de Análise</h1>
-      <p class="sub">Escreva a URL para análise:</p>
+      <section id="aba-url">
+        <h1>Painel de Análise</h1>
+        <p class="sub">Escreva a URL para análise:</p>
 
-      <form id="form">
-        <input id="url" type="text" placeholder="https://exemplo.com" required>
-        <label>
-          <input id="rede" type="checkbox" checked>
-          <span>Consultar informações da rede</span>
-        </label>
-        <button id="botao" type="submit">Analisar</button>
-      </form>
+        <form id="form">
+          <input id="url" type="text" placeholder="https://exemplo.com" required>
+          <label>
+            <input id="rede" type="checkbox" checked>
+            <span>Consultar informações da rede</span>
+          </label>
+          <button id="botao" type="submit">Analisar</button>
+        </form>
+      </section>
+
+      <section id="aba-email" hidden>
+        <h1>Análise de e-mail</h1>
+        <p class="sub">Envie um arquivo .eml (até 2 MB):</p>
+
+        <form id="form-email">
+          <input id="arquivo" type="file" accept=".eml" required>
+          <label>
+            <input id="rede-email" type="checkbox">
+                        <span>Consultar informações da rede</span>
+          </label>
+          <button id="botao-email" type="submit">Analisar e-mail</button>
+        </form>
+      </section>
 
       <p id="mensagem" role="status"></p>
 
@@ -45,7 +63,10 @@
             <span id="nivel" class="badge"></span>
           </div>
           <p id="url-analisada"></p>
+          <h3 id="titulo-sinais" hidden>Sinais do cabeçalho</h3>
           <ul id="sinais"></ul>
+          <h3 id="titulo-links" hidden>Links encontrados</h3>
+          <ul id="links" hidden></ul>
         </div>
       </section>
 

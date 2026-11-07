@@ -1,0 +1,9 @@
+From: "PayPal Suporte" <suporte@seguro-acesso.xyz>
+Reply-To: ajuda@outro-site.com
+To: voce@empresa.com
+Subject: Sua conta foi limitada
+Authentication-Results: mx.exemplo.com; spf=fail smtp.mailfrom=seguro-acesso.xyz
+Content-Type: text/plain; charset="utf-8"
+
+Sua conta sera encerrada. Verifique agora: http://paypa1-login.xyz/verifique
+Ou acesse: http://login.banco.com.seguro-acesso.xyz/entrar

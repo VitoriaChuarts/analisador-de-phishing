@@ -4,11 +4,14 @@ import tldextract
 
 def analisar_url(url: str) -> dict:
     """Quebra uma URL em partes úteis para análise."""
+    
     if "://" not in url:
         url = "http://" + url
 
     partes = urlparse(url)
     extraido = tldextract.extract(url)
+    
+    
 
     if extraido.suffix:
         registravel = f"{extraido.domain}.{extraido.suffix}"
