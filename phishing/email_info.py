@@ -14,6 +14,10 @@ def ler_eml(caminho: str):
         return BytesParser(policy=policy.default).parse(arquivo)
 
 
+def ler_eml_bytes(dados: bytes):
+    return BytesParser(policy=policy.default).parsebytes(dados)
+
+
 def extrair_links(mensagem) -> list:
     links = []
     for parte in mensagem.walk():

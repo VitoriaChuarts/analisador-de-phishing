@@ -1,8 +1,8 @@
 from email import message_from_string, policy
+from email.parser import BytesParser
 
 from phishing.analisador_email import analisar_email
 from phishing.email_info import ler_eml, extrair_links, sinais_do_cabecalho
-
 EMAIL_GOLPE = """From: "PayPal Suporte" <suporte@seguro-acesso.xyz>
 Reply-To: ajuda@outro-site.com
 Subject: Sua conta foi bloqueada
@@ -67,3 +67,11 @@ def test_analisar_email_limpo(tmp_path):
     r = analisar_email(str(arquivo), consultar_rede=False)
     assert r["pontuacao"] == 0
     assert r["nivel"] == "baixo"
+    
+def ler_eml(caminho: str):
+    with open(caminho, "rb") as arquivo:
+        return BytesParser(policy=policy.default).parse(arquivo)
+
+
+def ler_eml_bytes(dados: bytes):
+    return BytesParser(policy=policy.default).parsebytes(dados)
