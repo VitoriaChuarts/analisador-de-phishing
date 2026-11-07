@@ -7,43 +7,61 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>Analisador de Phishing</h1>
-    <p class="sub">Escreva a URL para análise:</p>
-
-    <form id="form">
-      <input id="url" type="text" placeholder="https://exemplo.com" required>
-      <label>
-        <input id="rede" type="checkbox" checked>
-        <span>Consultar informações da rede</span>
-      </label>
-      <button id="botao" type="submit">Analisar</button>
-    </form>
-
-    <p id="mensagem" role="status"></p>
-
-    <section id="resultado" hidden>
-      <div class="cabecalho">
-        <span>Nível de Phishing:</span>
-        <span id="nivel" class="badge"></span>
-        <span id="pontuacao"></span>
+  <div class="app">
+    <aside class="lateral">
+      <div class="perfil">
+        <div class="avatar" aria-hidden="true">🛡️</div>
+        <strong>Analisador</strong>
+        <small>de Phishing</small>
       </div>
-      <p id="url-analisada"></p>
-      <ul id="sinais"></ul>
-    </section>
+      <nav>
+        <a href="#analise" class="ativo">Analisar URL</a>
+        <a href="#historico-secao">Histórico</a>
+      </nav>
+    </aside>
 
-    <section>
-      <h2>Histórico</h2>
-      <div class="tabela">
-        <table>
-          <thead>
-            <tr><th>Data</th><th>URL</th><th>Pontos</th><th>Nível</th></tr>
-          </thead>
-          <tbody id="historico"></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+    <main>
+      <h1 id="analise">Painel de Análise</h1>
+      <p class="sub">Escreva a URL para análise:</p>
+
+      <form id="form">
+        <input id="url" type="text" placeholder="https://exemplo.com" required>
+        <label>
+          <input id="rede" type="checkbox" checked>
+          <span>Consultar informações da rede</span>
+        </label>
+        <button id="botao" type="submit">Analisar</button>
+      </form>
+
+      <p id="mensagem" role="status"></p>
+
+      <section id="resultado" hidden>
+        <div id="anel" class="anel">
+          <span id="pontuacao">0</span>
+        </div>
+        <div class="detalhes">
+          <div class="cabecalho">
+            <span>Nível de Phishing:</span>
+            <span id="nivel" class="badge"></span>
+          </div>
+          <p id="url-analisada"></p>
+          <ul id="sinais"></ul>
+        </div>
+      </section>
+
+      <section id="historico-secao">
+        <h2>Histórico</h2>
+        <div class="tabela">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>URL</th><th>Pontos</th><th>Nível</th></tr>
+            </thead>
+            <tbody id="historico"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="app.js"></script>
 </body>

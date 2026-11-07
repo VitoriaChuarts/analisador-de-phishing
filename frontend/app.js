@@ -9,6 +9,7 @@ const pontuacao = document.getElementById("pontuacao");
 const urlAnalisada = document.getElementById("url-analisada");
 const sinais = document.getElementById("sinais");
 const historico = document.getElementById("historico");
+const anel = document.getElementById("anel");
 
 const CLASSE_NIVEL = { baixo: "baixo", "médio": "medio", alto: "alto" };
 
@@ -37,10 +38,14 @@ async function analisar(url, consultarRede) {
 }
 
 function mostrarResultado(r) {
+  const classe = CLASSE_NIVEL[r.nivel] || "";
+
   resultado.hidden = false;
   nivel.textContent = r.nivel.toUpperCase();
-  nivel.className = "badge " + (CLASSE_NIVEL[r.nivel] || "");
-  pontuacao.textContent = r.pontuacao + " / 100";
+  nivel.className = "badge " + classe;
+  pontuacao.textContent = r.pontuacao;
+  anel.className = "anel " + classe;
+  anel.style.setProperty("--pct", r.pontuacao);
   urlAnalisada.textContent = r.url;
 
   sinais.replaceChildren();
@@ -49,10 +54,12 @@ function mostrarResultado(r) {
     return;
   }
   for (const s of r.sinais) {
-    sinais.appendChild(criar("li", `${s.descricao} (+${s.pontos})`));
+    const item = document.createElement("li");
+    item.appendChild(criar("span", s.descricao));
+    item.appendChild(criar("span", "+" + s.pontos, "pontos"));
+    sinais.appendChild(item);
   }
 }
-
 async function carregarHistorico() {
   const resposta = await fetch("/historico?limite=10");
   if (!resposta.ok) return;
