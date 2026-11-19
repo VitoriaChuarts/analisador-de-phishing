@@ -6,6 +6,7 @@ from phishing.redirecionamentos import (
     seguir_redirecionamentos,
     sinais_do_redirecionamento,
 )
+from phishing.siem_client import enviar_alerta_phishing
 
 
 def classificar(pontuacao: int) -> str:
@@ -38,10 +39,13 @@ def analisar(url: str, consultar_rede: bool = True) -> dict:
     for descricao, pontos in sinais:
         pontuacao += pontos
     pontuacao = min(pontuacao, 100)
+    nivel = classificar(pontuacao)
+
+    enviar_alerta_phishing(url, pontuacao, nivel, sinais)
 
     return {
         "url": url,
         "sinais": sinais,
         "pontuacao": pontuacao,
-        "nivel": classificar(pontuacao),
+        "nivel": nivel,
     }
