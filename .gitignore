@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .env
+banco_de_dados.db
+__pycache__/
+.pytest_cache/
